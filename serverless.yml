@@ -20,8 +20,7 @@ provider:
   runtime: nodejs16.x
   stage: ''
   region: us-east-1
-  
-
+  basePath: /
 
   environment:
     DYNAMODB_TABLE_NAME: ${env:DYNAMODB_TABLE_NAME}
