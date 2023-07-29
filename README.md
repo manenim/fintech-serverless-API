@@ -22,8 +22,8 @@ Endpoints
 -   GET - <https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/users> - Fetches all users on the Database
 -   GET - [https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/users/{userId}](https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/users/%7BuserId%7D) - Retrieves a user by Id
 -   GET - <https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/role/renters> - Retrieves list of all renters
--   GET - <https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod//role/buyers> - Retrieves list of all buyers
--   GET - [https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/property/{propertyId}]https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/property/%7BpropertyId%7D) - Checks and matches renters and buyers who are interested in the same property.
+-   GET - <https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/role/buyers> - Retrieves list of all buyers
+-   GET - <https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/property/{propertyId}> - Checks and matches renters and buyers who are interested in the same property.
 -   DELETE - [https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/users/{userId}](https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/users/%7BuserId%7D) - Deletes a user
 -   GET - <https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/api> - Link to the Swagger Documentation of the project
 
