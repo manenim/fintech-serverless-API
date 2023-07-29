@@ -5,7 +5,7 @@ package:
   excludeDevDependencies: false
 
 custom:
-  usersTableName: fintech-userbase
+  usersTableName: fintech-users
 
 
 
