@@ -6,6 +6,7 @@ import {
   DeleteItemCommand,
   ScanCommand,
   PutItemCommandOutput,
+  BatchWriteItemCommand,
 } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { RegisterUserDto } from './dto/register-user.dto.ts';
@@ -94,6 +95,27 @@ export class UsersService {
     } catch (e) {
       console.error(e);
       throw new InternalServerErrorException('Failed to delete user');
+    }
+  }
+
+  async batchInsertData(dataToInsert: any[]): Promise<any> {
+    try {
+      const params = {
+        RequestItems: {
+          'fintech-userbase': dataToInsert.map((item) => ({
+            PutRequest: {
+              Item: marshall(item),
+            },
+          })),
+        },
+      };
+
+      const command = new BatchWriteItemCommand(params);
+      const result = await db.send(command);
+      return result;
+    } catch (err) {
+      console.error('Error inserting items into DynamoDB:', err);
+      throw err;
     }
   }
 }

@@ -20,4 +20,5 @@ export declare class UsersController {
         message: string;
         deleteResult: import("@aws-sdk/client-dynamodb").DeleteItemCommandOutput;
     }>;
+    insertData(): Promise<any>;
 }

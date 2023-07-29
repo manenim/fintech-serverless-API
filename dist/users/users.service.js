@@ -89,6 +89,26 @@ let UsersService = class UsersService {
             throw new common_1.InternalServerErrorException('Failed to delete user');
         }
     }
+    async batchInsertData(dataToInsert) {
+        try {
+            const params = {
+                RequestItems: {
+                    'fintech-userbase': dataToInsert.map((item) => ({
+                        PutRequest: {
+                            Item: (0, util_dynamodb_1.marshall)(item),
+                        },
+                    })),
+                },
+            };
+            const command = new client_dynamodb_1.BatchWriteItemCommand(params);
+            const result = await db_1.default.send(command);
+            return result;
+        }
+        catch (err) {
+            console.error('Error inserting items into DynamoDB:', err);
+            throw err;
+        }
+    }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)()

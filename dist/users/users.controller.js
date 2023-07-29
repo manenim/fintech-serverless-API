@@ -34,6 +34,91 @@ let UsersController = class UsersController {
     deleteUser(id) {
         return this.usersService.deleteUser(id);
     }
+    async insertData() {
+        const dataToInsert = [
+            {
+                location: 'Los Angeles',
+                propertyId: '140',
+                role: 'buyer',
+                userId: '1011',
+                DOB: '09/18/1983',
+                name: 'Robert Johnson',
+            },
+            {
+                location: 'Houston',
+                propertyId: '150',
+                role: 'buyer',
+                userId: '1012',
+                DOB: '02/25/1978',
+                name: 'Jennifer Lee',
+            },
+            {
+                location: 'Austin',
+                propertyId: '155',
+                role: 'buyer',
+                userId: '1013',
+                DOB: '07/05/1990',
+                name: 'David Brown',
+            },
+            {
+                location: 'Dallas',
+                propertyId: '160',
+                role: 'renter',
+                userId: '1014',
+                DOB: '11/10/1987',
+                name: 'Jessica Martinez',
+            },
+            {
+                location: 'San Francisco',
+                propertyId: '165',
+                role: 'renter',
+                userId: '1015',
+                DOB: '03/14/1982',
+                name: 'Matthew Wilson',
+            },
+            {
+                location: 'Los Angeles',
+                propertyId: '170',
+                role: 'buyer',
+                userId: '1016',
+                DOB: '06/30/1991',
+                name: 'Emily Davis',
+            },
+            {
+                location: 'Austin',
+                propertyId: '175',
+                role: 'renter',
+                userId: '1017',
+                DOB: '12/08/1986',
+                name: 'Michael Anderson',
+            },
+            {
+                location: 'Houston',
+                propertyId: '180',
+                role: 'renter',
+                userId: '1018',
+                DOB: '04/22/1989',
+                name: 'Sophia Johnson',
+            },
+            {
+                location: 'San Francisco',
+                propertyId: '185',
+                role: 'buyer',
+                userId: '1019',
+                DOB: '08/09/1976',
+                name: 'Ethan Martinez',
+            },
+            {
+                location: 'Dallas',
+                propertyId: '190',
+                role: 'buyer',
+                userId: '1020',
+                DOB: '01/17/1995',
+                name: 'Isabella Brown',
+            },
+        ];
+        return this.usersService.batchInsertData(dataToInsert);
+    }
 };
 __decorate([
     (0, common_1.Post)('register'),
@@ -98,6 +183,12 @@ __decorate([
     __metadata("design:paramtypes", [get_user_by_id_dto_1.getUserByIdDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "deleteUser", null);
+__decorate([
+    (0, common_1.Get)('/send/insertData'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "insertData", null);
 UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

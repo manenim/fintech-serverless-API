@@ -18,4 +18,5 @@ export declare class UsersService {
         message: string;
         deleteResult: import("@aws-sdk/client-dynamodb").DeleteItemCommandOutput;
     }>;
+    batchInsertData(dataToInsert: any[]): Promise<any>;
 }
