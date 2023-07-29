@@ -21,7 +21,11 @@ async function bootstrap() {
     .addTag('Users')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document, {
+    swaggerOptions: {
+      url: 'https://ochoohdbkd.execute-api.us-east-1.amazonaws.com/prod/api-json',
+    }
+  });
   await app.init();
 
   const expressApp = app.getHttpAdapter().getInstance();

@@ -7,11 +7,11 @@
     "provider": {
       "name": "aws",
       "runtime": "nodejs16.x",
-      "stage": "prod",
       "region": "us-east-1",
       "environment": {
         "DYNAMODB_TABLE_NAME": "fintech-userbase"
       },
+      "stage": "dev",
       "versionFunctions": true,
       "compiledCloudFormationTemplate": {
         "AWSTemplateFormatVersion": "2010-09-09",
@@ -89,7 +89,7 @@
           "MainLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/fintech-serverless-api-prod-main"
+              "LogGroupName": "/aws/lambda/fintech-serverless-api-dev-main"
             }
           },
           "IamRoleLambdaExecution": {
@@ -118,7 +118,7 @@
                       "-",
                       [
                         "fintech-serverless-api",
-                        "prod",
+                        "dev",
                         "lambda"
                       ]
                     ]
@@ -134,7 +134,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/fintech-serverless-api-prod*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/fintech-serverless-api-dev*:*"
                           }
                         ]
                       },
@@ -145,7 +145,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/fintech-serverless-api-prod*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/fintech-serverless-api-dev*:*:*"
                           }
                         ]
                       }
@@ -159,7 +159,7 @@
                   "-",
                   [
                     "fintech-serverless-api",
-                    "prod",
+                    "dev",
                     {
                       "Ref": "AWS::Region"
                     },
@@ -176,11 +176,11 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/fintech-serverless-api/prod/1690605184420-2023-07-29T04:33:04.420Z/fintech-serverless-api.zip"
+                "S3Key": "serverless/fintech-serverless-api/dev/1690613621327-2023-07-29T06:53:41.327Z/fintech-serverless-api.zip"
               },
               "Handler": "dist/serverless.handler",
               "Runtime": "nodejs16.x",
-              "FunctionName": "fintech-serverless-api-prod-main",
+              "FunctionName": "fintech-serverless-api-dev-main",
               "MemorySize": 1024,
               "Timeout": 6,
               "Environment": {
@@ -200,20 +200,20 @@
               "MainLogGroup"
             ]
           },
-          "MainLambdaVersionZlAj7nHggEl1VHpkWNwTHu3Kia5vg3nEKikfbJS5dLo": {
+          "MainLambdaVersionBkLvYJjqQWQbMH54oDWMbmDtu1Y7FlqDG9LChpmtZw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MainLambdaFunction"
               },
-              "CodeSha256": "WlpD8RxOocKUysKNUHUl6/0dSmh1cFY1bZ19DXqdEXQ="
+              "CodeSha256": "rBmpDIiEaWk5b4IWq00YhxOKMoUOWI78WAvBhXVxLSQ="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "prod-fintech-serverless-api",
+              "Name": "dev-fintech-serverless-api",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -332,13 +332,13 @@
               "MainLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1690605022866": {
+          "ApiGatewayDeployment1690613490117": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               },
-              "StageName": "prod"
+              "StageName": "dev"
             },
             "DependsOn": [
               "ApiGatewayMethodAny",
@@ -408,7 +408,7 @@
                       "-",
                       [
                         "fintech-serverless-api",
-                        "prod",
+                        "dev",
                         "lambda"
                       ]
                     ]
@@ -425,7 +425,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/fintech-serverless-api-prod-main:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/fintech-serverless-api-dev-main:*:*"
                           }
                         ]
                       },
@@ -449,7 +449,7 @@
                   "-",
                   [
                     "fintech-serverless-api",
-                    "prod",
+                    "dev",
                     "main",
                     {
                       "Ref": "AWS::Region"
@@ -532,16 +532,16 @@
               "Ref": "ServerlessDeploymentBucket"
             },
             "Export": {
-              "Name": "sls-fintech-serverless-api-prod-ServerlessDeploymentBucketName"
+              "Name": "sls-fintech-serverless-api-dev-ServerlessDeploymentBucketName"
             }
           },
           "MainLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MainLambdaVersionZlAj7nHggEl1VHpkWNwTHu3Kia5vg3nEKikfbJS5dLo"
+              "Ref": "MainLambdaVersionBkLvYJjqQWQbMH54oDWMbmDtu1Y7FlqDG9LChpmtZw"
             },
             "Export": {
-              "Name": "sls-fintech-serverless-api-prod-MainLambdaFunctionQualifiedArn"
+              "Name": "sls-fintech-serverless-api-dev-MainLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -562,12 +562,12 @@
                   {
                     "Ref": "AWS::URLSuffix"
                   },
-                  "/prod"
+                  "/dev"
                 ]
               ]
             },
             "Export": {
-              "Name": "sls-fintech-serverless-api-prod-ServiceEndpoint"
+              "Name": "sls-fintech-serverless-api-dev-ServiceEndpoint"
             }
           }
         }
@@ -690,13 +690,13 @@
             "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"MainIamRoleLambdaExecution\"][\"Properties\"][\"Policies\"][0][\"PolicyDocument\"][\"Statement\"][1]"
           }
         ],
-        "name": "fintech-serverless-api-prod-main",
+        "name": "fintech-serverless-api-dev-main",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "MainLambdaVersionZlAj7nHggEl1VHpkWNwTHu3Kia5vg3nEKikfbJS5dLo"
+        "versionLogicalId": "MainLambdaVersionBkLvYJjqQWQbMH54oDWMbmDtu1Y7FlqDG9LChpmtZw"
       }
     },
     "resources": {
@@ -775,7 +775,7 @@
       "useDotenv": true,
       "package": {
         "excludeDevDependencies": false,
-        "artifactsS3KeyDirname": "serverless/fintech-serverless-api/prod/code-artifacts",
+        "artifactsS3KeyDirname": "serverless/fintech-serverless-api/dev/code-artifacts",
         "patterns": [
           "!node_modules/**",
           "!.gitignore",
@@ -6960,7 +6960,7 @@
           "node_modules/@vendia/serverless-express/src/transport.js"
         ],
         "artifact": "C:\\Users\\LENOVO\\Desktop\\nestjs\\fintech-serverless\\.serverless\\fintech-serverless-api.zip",
-        "artifactDirectoryName": "serverless/fintech-serverless-api/prod/1690605184420-2023-07-29T04:33:04.420Z"
+        "artifactDirectoryName": "serverless/fintech-serverless-api/dev/1690613621327-2023-07-29T06:53:41.327Z"
       },
       "custom": {
         "$ref": "$[\"service\"][\"custom\"]"
@@ -6983,7 +6983,7 @@
     "artifact": "C:\\Users\\LENOVO\\Desktop\\nestjs\\fintech-serverless\\.serverless\\fintech-serverless-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/fintech-serverless-api/prod/1690605184420-2023-07-29T04:33:04.420Z",
+    "artifactDirectoryName": "serverless/fintech-serverless-api/dev/1690613621327-2023-07-29T06:53:41.327Z",
     "artifact": "fintech-serverless-api.zip"
   }
 }
