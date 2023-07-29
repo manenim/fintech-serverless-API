@@ -1,0 +1,91 @@
+service: fintech-serverless-api
+
+useDotenv: true
+package:
+  excludeDevDependencies: false
+
+custom:
+  usersTableName: fintech-userbase
+
+
+
+plugins:
+  - serverless-iam-roles-per-function
+  - serverless-offline
+  - serverless-plugin-common-excludes # this should go before serverless-plugin-include-dependencies
+  - serverless-plugin-include-dependencies
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: 'prod'
+  region: us-east-1
+  
+
+
+  environment:
+    DYNAMODB_TABLE_NAME: ${env:DYNAMODB_TABLE_NAME}
+
+
+
+functions:
+  main:
+    handler: dist/serverless.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action: 
+          - 'dynamodb:PutItem'
+          - 'dynamodb:Query' # this is how you comment things in YAML
+          - 'dynamodb:Scan'
+          - 'dynamodb:Get*'
+        Resource: '*'
+      
+
+
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.usersTableName}
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: role
+            AttributeType: S
+          - AttributeName: propertyId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+          #GSIs:
+        GlobalSecondaryIndexes:
+          - IndexName: role-index
+            KeySchema:
+              - AttributeName: role
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+            #adding property index
+          - IndexName: propertyId-index
+            KeySchema:
+              - AttributeName: propertyId
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
