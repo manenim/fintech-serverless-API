@@ -15,7 +15,7 @@ async function bootstrap() {
     app.useGlobalPipes(new common_1.ValidationPipe());
     const config = new swagger_1.DocumentBuilder()
         .setTitle('Fintech Serverless API')
-        .setDescription('TechCash is developing a consumer-based web application for the fintech space to bridge the gap')
+        .setDescription('TechCash is developing a consumer-based web application for the fintech space to bridge the gap between users and renters')
         .setVersion('1.0')
         .addTag('Users')
         .build();

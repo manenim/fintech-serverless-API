@@ -9,7 +9,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Fintech Serverless API')
     .setDescription(
-      'TechCash is developing a consumer-based web application for the fintech space to bridge the gap',
+      'TechCash is developing a consumer-based web application for the fintech space to bridge the gap between users and renters',
     )
     .setVersion('1.0')
     .addTag('Users')
