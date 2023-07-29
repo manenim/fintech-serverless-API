@@ -25,6 +25,6 @@ export class RegisterUserDto {
 
     @ApiProperty()
     @IsNotEmpty()
-    Location: string;
+    location: string;
     
 }

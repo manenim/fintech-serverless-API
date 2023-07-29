@@ -18,7 +18,6 @@ let UsersService = class UsersService {
     async register(registerUserDto) {
         let response;
         try {
-            console.log('entered');
             const params = {
                 TableName: process.env.DYNAMODB_TABLE_NAME,
                 Item: (0, util_dynamodb_1.marshall)(registerUserDto || {}),

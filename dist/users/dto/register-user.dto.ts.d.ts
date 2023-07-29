@@ -4,5 +4,5 @@ export declare class RegisterUserDto {
     userId: string;
     role: string;
     propertyId: string;
-    Location: string;
+    location: string;
 }

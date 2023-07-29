@@ -16,9 +16,7 @@ const client_dynamodb_1 = require("@aws-sdk/client-dynamodb");
 const db_1 = __importDefault(require("../utils/db"));
 let UserRolesService = class UserRolesService {
     async getRenters() {
-        console.log('entered!!!');
         try {
-            console.log('entered again!!!');
             const params = {
                 TableName: process.env.DYNAMODB_TABLE_NAME,
                 IndexName: 'role-index',

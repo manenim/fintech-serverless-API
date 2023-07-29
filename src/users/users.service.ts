@@ -19,7 +19,6 @@ export class UsersService {
       | { message: string; createResult: PutItemCommandOutput }
       | { message: string; statusCode: number };
     try {
-      console.log('entered');
       const params = {
         TableName: process.env.DYNAMODB_TABLE_NAME,
         Item: marshall(registerUserDto || {}),

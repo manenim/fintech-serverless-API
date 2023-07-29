@@ -6,9 +6,7 @@ import db from 'src/utils/db';
 @Injectable()
 export class UserRolesService {
   async getRenters() {
-    console.log('entered!!!');
     try {
-      console.log('entered again!!!');
       const params = {
         TableName: process.env.DYNAMODB_TABLE_NAME,
         IndexName: 'role-index',
